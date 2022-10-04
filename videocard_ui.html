@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type=price]{
+  width: 20;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.clearbtn {
+  width: 100%;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .clearbtn {
+     width: 100%;
+  }
+}
+
+.right{
+    float:right;
+ width: 40%;
+}
+
+.left{
+    float:left;
+ width: 40%;}
+
+</style>
+</head>
+<body>
+
+  <h2 id="ti">Gaming Video Card Product Form</h2>
+
+  <div class="imgcontainer">
+    <img width ="100" src="https://cf3.s3.souqcdn.com/item/2017/08/06/23/71/26/95/item_XL_23712695_34155524.jpg" alt="Amazon" class="amazon">
+  </div>
+
+  <div class="container">
+ <label  for="product_link"><b>Product Link (CAUTION)</b></label>
+    <input  id="ID_product_link" type="text" placeholder="Product Link .com">
+
+    
+
+
+
+    <label  for="title"><b>Title</b></label>
+    <input  id="ID_title" type="text" placeholder="Dell G5-5587 Gaming Laptop - Intel Core i7-8750H - 15.6 inch - 16GB RAM - 1TB HDD with 256GB SSD - Nvidia 6GB">
+
+    
+<label for="description"><b>Description</b></label>
+<br>
+<textarea id="ID_description" type="text" name="Description" cols="150" rows="1" placeholder = "Description"></textarea>
+<br>
+
+
+<label for="brand"><b>Brand Type</b></label>
+    <input id="ID_brand" type="text" placeholder="Dell / HP / Lenovo">
+
+
+<label for="image"><b>Image Link</b></label>
+    <input id="ID_image_link" type="text" placeholder="Image link" name="image">
+
+
+<label for="price"><b>Price</b></label>
+
+<br>
+<input id="ID_current_price" type="price" placeholder="Current Price" class="right">
+<input id="ID_old_price" type="price" placeholder="Old Price"  class="left">
+ 
+        
+
+    <button type="submit" onclick="submit()"">Add Product</button>
+   
+ </div>
+
+ 
+
+
+
+<script type="text/javascript">
+    function submit() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              //  alert(xhr.response);
+            }
+        }
+
+    var title = document.getElementById("ID_title").value;  
+    var description = document.getElementById("ID_description").value;  
+    var brand = document.getElementById("ID_brand").value;  
+    var product_image = document.getElementById("ID_image_link").value;  
+    var old_price = document.getElementById("ID_old_price").value;  
+    var current_price = document.getElementById("ID_current_price").value;  
+    var product_link = document.getElementById("ID_product_link").value;  
+
+   description = description.replace(/\n/g, "?");
+ old_price = old_price.replace(/,/g, '');
+   current_price = current_price.replace(/,/g, '');
+
+    var url = 'http://139.162.182.101/pc/affiliate/affiliate_add_videocard.php?';
+
+    var finalUrl = url + 'title=' + title + '&description=' + description + '&brand=' + brand + '&product_image=' + product_image + '&old_price=' + old_price +  '&Xcurrent_price=' + current_price + '&product_link=' + product_link;
+        
+        xhr.open('get', finalUrl, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.send();
+
+     document.getElementById("ti").innerHTML = "" +finalUrl; 
+     clear();
+}
+
+
+    function clear() {
+document.getElementById("ID_title").value = "";  
+    document.getElementById("ID_description").value = "";  
+   document.getElementById("ID_brand").value = "";  
+    document.getElementById("ID_image_link").value = "";  
+    document.getElementById("ID_old_price").value = "";  
+    document.getElementById("ID_current_price").value = "";  
+   document.getElementById("ID_product_link").value = "";
+     }
+
+
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>
